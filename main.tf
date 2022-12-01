@@ -5,7 +5,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 3.0"
 
-  name = local.name
+  name = "${var.cluster_name}-vpc"
   cidr = local.vpc_cidr
 
   azs             = local.azs
@@ -71,21 +71,27 @@ module "eks_blueprints_kubernetes_addons" {
   eks_cluster_version  = module.eks_blueprints.eks_cluster_version
 
   enable_argocd = var.enable_argocd
-  argocd_helm_config = {
-    set_sensitive = [
-      {
-        name  = "configs.secret.argocdServerAdminPassword"
-        value = var.argocd_admin_password
-      }
-    ]
-  }
+  # argocd_helm_config = {
+  #   set_sensitive = [
+  #     {
+  #       name  = "configs.secret.argocdServerAdminPassword"
+  #       value = var.argocd_admin_password
+  #     }
+  #   ]
+  # }
   # U es dzevov petq e avelcnel sax kam skzbi hamar amenataracvac
   # blueprintsi submodulner@
-  enable_cert_manager = var.enable_cert_manager
+  # enable_cert_manager = var.enable_cert_manager
 
 }
 
-#---------------------------------------------------------------
-# Supporting Resources
-#---------------------------------------------------------------
+module "infraheads_eks_modules_github_repo" {
+  source = "modules/github_repo"
+  count = var.create_github_repo? 1:0
+  github_repo_name = var.cluster_name
+  visibility = var.github_repo_visibility
+  template_owner = var.github_template_repo_owner
+  template_repo_name = var.github_template_repo_name
 
+  
+}
