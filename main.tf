@@ -1,11 +1,10 @@
 module "eks_blueprints" {
-  source = "https://github.com/aws-ia/terraform-aws-eks-blueprints.git"
+  source = "github.com/aws-ia/terraform-aws-eks-blueprints"
 
-  # EKS CLUSTER
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
 
-  vpc_id                   = vpc.vpc_id # Enter VPC ID
+  vpc_id                   = var.vpc_id
   private_subnet_ids       = var.private_subnet_ids
   public_subnet_ids        = var.public_subnet_ids
   control_plane_subnet_ids = var.control_plane_subnet_ids
