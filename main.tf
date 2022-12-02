@@ -1,3 +1,45 @@
+<<<<<<< HEAD
+=======
+#---------------------------------------------------------------
+# EKS Blueprints
+#---------------------------------------------------------------
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> 3.0"
+
+  name = local.name
+  cidr = local.vpc_cidr
+
+  azs             = local.azs
+  public_subnets  = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k)]
+  private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 10)]
+
+  enable_nat_gateway   = true
+  single_nat_gateway   = true
+  enable_dns_hostnames = true
+
+  # Manage so we can name
+  manage_default_network_acl    = true
+  default_network_acl_tags      = { Name = "${var.cluster_name}-default" }
+  manage_default_route_table    = true
+  default_route_table_tags      = { Name = "${var.cluster_name}-default" }
+  manage_default_security_group = true
+  default_security_group_tags   = { Name = "${var.cluster_name}-default" }
+
+  public_subnet_tags = {
+    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
+    "kubernetes.io/role/elb"              = 1
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
+    "kubernetes.io/role/internal-elb"     = 1
+  }
+
+  tags = local.tags
+}
+
+>>>>>>> parent of a1b144f (added github_repo and argocd_apps modules)
 module "eks_blueprints" {
   source = "https://github.com/aws-ia/terraform-aws-eks-blueprints.git"
 
@@ -31,15 +73,31 @@ module "eks_blueprints" {
   enable_cluster_encryption               = var.enable_cluster_encryption
   cluster_encryption_config               = var.cluster_encryption_config
 
+<<<<<<< HEAD
   cluster_ip_family         = var.cluster_ip_family
   cluster_service_ipv4_cidr = var.cluster_service_ipv4_cidr
   cluster_service_ipv6_cidr = var.cluster_service_ipv6_cidr
+=======
+  enable_argocd = var.enable_argocd
+  argocd_helm_config = {
+    set_sensitive = [
+      {
+        name  = "configs.secret.argocdServerAdminPassword"
+        value = var.argocd_admin_password
+      }
+    ]
+  }
+  # U es dzevov petq e avelcnel sax kam skzbi hamar amenataracvac
+  # blueprintsi submodulner@
+  enable_cert_manager = var.enable_cert_manager
+>>>>>>> parent of a1b144f (added github_repo and argocd_apps modules)
 
   create_cloudwatch_log_group            = var.create_cloudwatch_log_group
   cluster_enabled_log_types              = var.cluster_enabled_log_types
   cloudwatch_log_group_retention_in_days = var.cloudwatch_log_group_retention_in_days
   cloudwatch_log_group_kms_key_id        = var.cloudwatch_log_group_kms_key_id
 
+<<<<<<< HEAD
   create_iam_role               = var.create_iam_role
   iam_role_arn                  = var.iam_role_arn
   iam_role_name                 = var.iam_role_name
@@ -80,3 +138,9 @@ module "eks_blueprints" {
 
   tags = var.tags
 }
+=======
+#---------------------------------------------------------------
+# Supporting Resources
+#---------------------------------------------------------------
+
+>>>>>>> parent of a1b144f (added github_repo and argocd_apps modules)
