@@ -4,9 +4,13 @@ locals {
 
 # Current version of integrations/github has a bug.
 # The "provider" block needs to be set in the module.
+provider "github" {
+  owner = var.provider_owner
+  token = var.provider_token
+}
 
 resource "github_repository" "repository" {
-  name        = var.github_repo_name
+  name        = var.name
   description = var.description
 
   visibility = var.visibility
