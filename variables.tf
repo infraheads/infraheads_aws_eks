@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 variable "tags" {
   description = "Additional tags (e.g. `map('BusinessUnit`,`XYZ`)"
   type        = map(string)
@@ -429,10 +428,3 @@ variable "platform_teams" {
   type        = any
   default     = {}
 }
-=======
- variable "argocd_admin_password" {
-	type = string
-	description = "Argocd admin password"
-	default = null
- }
->>>>>>> parent of a1b144f (added github_repo and argocd_apps modules)
