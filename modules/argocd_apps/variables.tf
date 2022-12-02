@@ -3,6 +3,11 @@ variable "argocd_apps_chart_repo" {
 	description = "Argocd apps helm chart repository"
 	default = "https://argoproj.github.io/argo-helm"
 }
+variable "argocd_apps_chart_name" {
+	type = string
+	description = "Argocd application helm chart name "
+	default = "argocd-apps"
+}
 variable "argocd_apps_chart_version" {
 	type = string
 	description = "Argocd apps helm chart version"
