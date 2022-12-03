@@ -11,13 +11,8 @@ module "eks_blueprints_kubernetes_addons_external_dns" {
   external_dns_helm_config       = var.external_dns_helm_config
   manage_via_gitops              = var.manage_via_gitops
   external_dns_irsa_policies     = var.external_dns_irsa_policies
-  # addon_context                  = local.addon_context 
 
   eks_cluster_domain             = var.eks_cluster_domain
   external_dns_private_zone      = var.external_dns_private_zone
   external_dns_route53_zone_arns = var.external_dns_route53_zone_arns
-
-  depends_on = [
-    aws_route53_zone.route53_zone
-  ]
 }

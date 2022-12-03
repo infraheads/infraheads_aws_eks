@@ -101,6 +101,37 @@ variable "argocd_manage_add_ons" {
   default     = false
 }
 
+#-----------ArgoCD Apps-----------
+variable "enable_argocd_apps" {
+  description = "Enable ArgoCD Apps"
+  type        = bool
+  default     = false
+}
+
+variable "argocd_apps_chart_repo" {
+	type = string
+	description = "Argocd apps helm chart repository"
+	default = "https://argoproj.github.io/argo-helm"
+}
+
+variable "argocd_apps_chart_name" {
+	type = string
+	description = "Argocd application helm chart name "
+	default = "argocd-apps"
+}
+
+variable "argocd_apps_chart_version" {
+	type = string
+	description = "Argocd apps helm chart version"
+	default = "0.0.3"
+}
+
+variable "argocd_apps_namespace" {
+	type = string
+	description = "Argocd apps namespace"
+	default = "argocd"
+}
+
 #-----------Crossplane ADDON-------------
 variable "enable_crossplane" {
   description = "Enable Crossplane add-on"
@@ -159,3 +190,40 @@ variable "data_plane_wait_arn" {
   type        = string
   default     = ""
 }
+
+#---------Github repo----------
+variable "enable_github_repo" {
+  description = "Enable Github repo"
+  type        = bool
+  default     = false
+}
+
+variable "github_repo_name" {
+  description = "The name of the GitHub repository that will be created."
+  type = string
+}
+
+variable "github_description" {
+  description = "The description of the GitHub repository that will be created."
+  type = string
+  default = ""
+}
+
+variable "github_visibility" {
+  description = "The visibility of the GitHub repository that will be created."
+  type = string
+  default = "public"
+}
+
+variable "github_template_owner" {
+  description = "GitHub template repository name. (Default: provider_owner)"
+  type = string
+  default = ""
+}
+
+variable "github_template_repo_name" {
+  description = "GitHub template repository name. (Will not use a template, if not set)"
+  type = string
+  default = ""
+}
+
