@@ -1,13 +1,16 @@
 module "argocd" {
-  source                         = "https://github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
+  source                         = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
+  
   # ArgoCD
   enable_argocd                  = var.enable_argocd
   argocd_helm_config             = var.argocd_helm_config
   argocd_applications            = var.argocd_applications
+  
   # ArgoCD workflow
   enable_argo_workflows          = var.enable_argo_workflows
   argo_workflows_helm_config     = var.argo_workflows_helm_config
   argocd_manage_add_ons          = var.argocd_manage_add_ons
+  
   # Crossplane
   enable_crossplane              = var.enable_crossplane
   crossplane_helm_config         = var.crossplane_helm_config
@@ -19,7 +22,7 @@ module "argocd" {
 }
 
 module "external_dns" {
-  source = "./external-dns"
+  source = "./external_dns"
   count = var.enable_external_dns ? 1 : 0
 
   external_dns_helm_config       = var.external_dns_helm_config
