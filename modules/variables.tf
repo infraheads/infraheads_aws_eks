@@ -20,7 +20,6 @@ variable "domain_name" {
   type        = string
 }
 
-
 variable "manage_via_gitops" {
   description = "Enable managing add-on configuration via ArgoCD App of Apps"
   type        = bool
@@ -81,12 +80,6 @@ variable "enable_argocd" {
   description = "Enable Argo CD Kubernetes add-on"
   type        = bool
   default     = false
-}
-
-variable "argocd_helm_config" {
-  description = "Argo CD Kubernetes add-on config"
-  type        = any
-  default     = {}
 }
 
 variable "argocd_applications" {
