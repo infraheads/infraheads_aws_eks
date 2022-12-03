@@ -1,3 +1,18 @@
+variable "eks_cluster_endpoint" {
+  description = "EKS Cluster endpoint"
+  type        = string
+}
+
+variable "eks_oidc_provider" {
+  description = "EKS Cluster oidc provider"
+  type        = string
+}
+
+variable "eks_cluster_version" {
+  description = "EKS Cluster version"
+  type        = string
+}
+
 variable "eks_cluster_id" {
   description = "EKS Cluster Id"
   type        = string
@@ -19,7 +34,6 @@ variable "domain_name" {
   description = "Domain name of the Route53 hosted zone to use with External DNS."
   type        = string
 }
-
 
 variable "manage_via_gitops" {
   description = "Enable managing add-on configuration via ArgoCD App of Apps"
@@ -81,12 +95,6 @@ variable "enable_argocd" {
   description = "Enable Argo CD Kubernetes add-on"
   type        = bool
   default     = false
-}
-
-variable "argocd_helm_config" {
-  description = "Argo CD Kubernetes add-on config"
-  type        = any
-  default     = {}
 }
 
 variable "argocd_applications" {
