@@ -1,6 +1,8 @@
 module "argocd" {
   source                         = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
   
+  eks_cluster_id                 = var.eks_cluster_id
+  
   # ArgoCD
   enable_argocd                  = var.enable_argocd
   argocd_helm_config             = var.argocd_helm_config
