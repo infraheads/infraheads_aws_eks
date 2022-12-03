@@ -4,7 +4,7 @@ resource "aws_route53_zone" "route53_zone" {
 }
 
 module "eks_blueprints_kubernetes_addons_external_dns" {
-  source = "https://github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
+  source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
   count                          = var.enable_external_dns ? 1 : 0
 
