@@ -12,26 +12,17 @@ variable "description" {
 variable "visibility" {
   description = "The visibility of the GitHub repository that will be created."
   type = string
-  default = "public"
+  default = ""
 }
 
 variable "template_owner" {
-  description = "GitHub template repository name. (Default: provider_owner)"
+  description = "GitHub template repository name. (Default: provider_owner)."
   type = string
   default = ""
 }
 
 variable "template_repo_name" {
-  description = "GitHub template repository name. (Will not use a template, if not set)"
+  description = "GitHub template repository name. (Will not use a template, if not set)."
   type = string
   default = ""
 }
-# variable "github_token" {
-# 	type = string
-# 	description = "Github repository token"
-# }
-# variable "github_owner" {
-# 	type = string
-# 	description = "Github repository owner"
-  
-# }

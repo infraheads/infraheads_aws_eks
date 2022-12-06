@@ -1,0 +1,17 @@
+applications:
+  - name: ${name}
+    namespace: ${app_namespace}
+    project: ${project}
+    source:
+      repoURL: ${repo_url}
+      targetRevision: ${target_revision}
+      path: ${path}
+      directory:
+        recurse: ${recurse}
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: ${namespace} 
+    syncPolicy:
+      automated:
+        prune: ${prune}
+        selfHeal: ${self_heal} 
