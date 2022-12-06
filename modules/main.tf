@@ -1,6 +1,6 @@
 module "addons" {
   source                         = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
-  
+
   eks_cluster_id                 = var.eks_cluster_id
 
   # ArgoCD
@@ -14,27 +14,28 @@ module "addons" {
   argocd_manage_add_ons          = var.argocd_manage_add_ons
   
   # Crossplane
-  enable_crossplane              = var.enable_crossplane
-  crossplane_helm_config         = var.crossplane_helm_config
-  crossplane_aws_provider        = var.crossplane_aws_provider
-  crossplane_jet_aws_provider    = var.crossplane_jet_aws_provider
-  crossplane_kubernetes_provider = var.crossplane_kubernetes_provider
-  account_id                     = data.aws_caller_identity.current.account_id
-  aws_partition                  = data.aws_partition.current.id
+  # enable_crossplane              = var.enable_crossplane
+  # crossplane_helm_config         = var.crossplane_helm_config
+  # crossplane_aws_provider        = var.crossplane_aws_provider
+  # crossplane_jet_aws_provider    = var.crossplane_jet_aws_provider
+  # crossplane_kubernetes_provider = var.crossplane_kubernetes_provider
+  # account_id                     = var.crosplane_account_id  #data.aws_caller_identity.current.account_id
+  # aws_partition                  = var.crosplane_aws_partition #data.aws_partition.current.id
 }
+
 
 module "external_dns" {
   source = "./external_dns"
   count = var.enable_external_dns ? 1 : 0
 
-  external_dns_helm_config       = var.external_dns_helm_config
-  argocd_manage_add_ons          = var.argocd_manage_add_ons
-  external_dns_irsa_policies     = var.external_dns_irsa_policies
+#   external_dns_helm_config       = var.external_dns_helm_config
+#   # argocd_manage_add_ons          = var.argocd_manage_add_ons
+#   external_dns_irsa_policies     = var.external_dns_irsa_policies
 
-  eks_cluster_domain             = var.eks_cluster_domain
-  external_dns_private_zone      = var.external_dns_private_zone
-  external_dns_route53_zone_arns = var.external_dns_route53_zone_arns
-  create_route53_zone            = var.create_route53_zone
+#   eks_cluster_domain             = var.eks_cluster_domain
+#   external_dns_private_zone      = var.external_dns_private_zone
+#   external_dns_route53_zone_arns = var.external_dns_route53_zone_arns
+#   create_route53_zone            = var.create_route53_zone
 }
 
 module "github_repo" {
@@ -46,6 +47,8 @@ module "github_repo" {
   visibility         = var.github_visibility
   template_owner     = var.github_template_owner
   template_repo_name = var.github_template_repo_name
+  # github_token = var.github_token
+  # github_owner = var.github_owner
 }
 
 module "argocd_apps" {
@@ -56,4 +59,12 @@ module "argocd_apps" {
   argocd_apps_chart_name    = var.argocd_apps_chart_name
   argocd_apps_chart_version = var.argocd_apps_chart_version
   argocd_apps_namespace     = var.argocd_apps_namespace
+
+
+  argocd_apps_values = var.argocd_apps_values
+  argocd_apps_repo_url =   var.argocd_apps_repo_url
+  argocd_apps_repo_path = var.argocd_apps_repo_path
+  project_namespace = var.project_namespace
+
 }
+

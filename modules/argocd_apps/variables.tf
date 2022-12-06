@@ -18,3 +18,22 @@ variable "argocd_apps_namespace" {
 	description = "Argocd apps namespace"
 	default = "argocd"
 }
+variable "argocd_apps_repo_url" {
+	type = string
+	description = "Girhub repository url for argocd-apps"
+	default = ""
+}
+variable "argocd_apps_repo_path" {
+	type = string
+	description = "Repository path for argocds applications"
+	default = "/"
+}
+variable "project_namespace" {
+	type = string
+	description = "Namespace for project"
+	# default = "default"
+}
+variable "argocd_apps_values" {
+	type = any
+	description = "values file for argocd-apps"
+}
