@@ -15,7 +15,7 @@ module "addons" {
 }
 
 module "argocd_apps" {
-  source = "./argocd_apps"
+  source = "./argocd-apps"
   count  = var.enable_argocd_apps ? 1 : 0
  
   argocd_apps_chart_repo    = var.argocd_apps_chart_repo
@@ -36,7 +36,7 @@ module "argocd_apps" {
 }
 
 module "external_dns" {
-  source = "./external_dns"
+  source = "./external-dns"
   count  = var.enable_external_dns ? 1 : 0
 
   #   external_dns_helm_config       = var.external_dns_helm_config
@@ -50,7 +50,7 @@ module "external_dns" {
 }
 
 module "github_repo" {
-  source = "./github_repo"
+  source = "./github-repo"
   count  = var.enable_github_repo ? 1 : 0
 
   github_repo_name   = var.github_repo_name
@@ -58,4 +58,26 @@ module "github_repo" {
   visibility         = var.github_visibility
   template_owner     = var.github_template_owner
   template_repo_name = var.github_template_repo_name
+}
+
+module "cert_manager" {
+  count                             = var.enable_cert_manager ? 1 : 0
+  source                            = "./cert-manager"
+  helm_config                       = var.cert_manager_helm_config
+  manage_via_gitops                 = var.argocd_manage_add_ons
+  irsa_policies                     = var.cert_manager_irsa_policies
+  addon_context                     = local.addon_context
+  domain_names                      = var.cert_manager_domain_names
+  install_acme_issuers              = var.cert_manager_install_acme_issuers
+  kubernetes_svc_image_pull_secrets = var.cert_manager_kubernetes_svc_image_pull_secrets
+  cluster_issuer_name               = var.cert_manager_cluster_issuer_name
+  email                             = var.cert_manager_email
+  external_account_keyID            = var.cert_manager_external_account_keyID
+  external_account_secret_key       = var.cert_manager_external_account_secret_key
+  preferred_chain                   = var.cert_manager_preferred_chain
+  acme_server_url                   = var.cert_manager_acme_server_url
+  dns_region                        = var.cert_manager_dns_region
+  common_name                       = var.cert_manager_certificate_common_name
+  is_ca                             = var.cert_manager_certificate_is_ca
+  hosted_zone_id                    = var.cert_manager_hosted_zone_id
 }
