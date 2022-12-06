@@ -1,17 +1,18 @@
 module "addons" {
   source                         = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
+
   eks_cluster_id                 = var.eks_cluster_id
-  eks_cluster_endpoint           = var.eks_cluster_endpoint
-  eks_oidc_provider              = var.eks_oidc_provider
-  eks_cluster_version            = var.eks_cluster_version
+
   # ArgoCD
   enable_argocd                  = var.enable_argocd
   argocd_helm_config             = var.argocd_helm_config
   argocd_applications            = var.argocd_applications
+  
   # ArgoCD workflow
   enable_argo_workflows          = var.enable_argo_workflows
   argo_workflows_helm_config     = var.argo_workflows_helm_config
   argocd_manage_add_ons          = var.argocd_manage_add_ons
+  
   # Crossplane
   # enable_crossplane              = var.enable_crossplane
   # crossplane_helm_config         = var.crossplane_helm_config
@@ -22,9 +23,10 @@ module "addons" {
   # aws_partition                  = var.crosplane_aws_partition #data.aws_partition.current.id
 }
 
-# module "external_dns" {
-#   source = "./external_dns"
-#   count = var.enable_external_dns ? 1 : 0
+
+module "external_dns" {
+  source = "./external_dns"
+  count = var.enable_external_dns ? 1 : 0
 
 #   external_dns_helm_config       = var.external_dns_helm_config
 #   # argocd_manage_add_ons          = var.argocd_manage_add_ons
@@ -34,7 +36,7 @@ module "addons" {
 #   external_dns_private_zone      = var.external_dns_private_zone
 #   external_dns_route53_zone_arns = var.external_dns_route53_zone_arns
 #   create_route53_zone            = var.create_route53_zone
-# }
+}
 
 module "github_repo" {
   source = "./github_repo"
@@ -58,9 +60,11 @@ module "argocd_apps" {
   argocd_apps_chart_version = var.argocd_apps_chart_version
   argocd_apps_namespace     = var.argocd_apps_namespace
 
+
   argocd_apps_values = var.argocd_apps_values
   argocd_apps_repo_url =   var.argocd_apps_repo_url
   argocd_apps_repo_path = var.argocd_apps_repo_path
   project_namespace = var.project_namespace
 
 }
+
