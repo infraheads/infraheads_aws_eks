@@ -26,4 +26,12 @@ variable "template_repo_name" {
   type = string
   default = ""
 }
-
+# variable "github_token" {
+# 	type = string
+# 	description = "Github repository token"
+# }
+# variable "github_owner" {
+# 	type = string
+# 	description = "Github repository owner"
+  
+# }
