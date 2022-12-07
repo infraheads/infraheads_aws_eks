@@ -24,7 +24,25 @@ variable "eks_cluster_domain" {
   default     = ""
 }
 
-#----------- External DNS -----------
+variable "tags" {
+  description = "Additional tags (e.g. `map('BusinessUnit`,`XYZ`)"
+  type        = map(string)
+  default     = {}
+}
+
+variable "irsa_iam_role_path" {
+  description = "IAM role path for IRSA roles"
+  type        = string
+  default     = "/"
+}
+
+variable "irsa_iam_permissions_boundary" {
+  description = "IAM permissions boundary for IRSA roles"
+  type        = string
+  default     = ""
+}
+
+#-----------EXTERNAL DNS-----------
 variable "enable_external_dns" {
   description = "External DNS add-on"
   type        = bool
@@ -72,7 +90,7 @@ variable "create_route53_zone" {
   default     = false
 }
 
-#-----------Argo workflows ADDON-------------
+#-----------ARGOCD WORKFLOWS-------------
 variable "enable_argo_workflows" {
   description = "Enable Argo workflows add-on"
   type        = bool
@@ -91,7 +109,7 @@ variable "argo_workflows_helm_config" {
   default     = null
 }
 
-#-----------ArgoCD ADDON-------------
+#-----------ARGOCD ADDON-------------
 variable "enable_argocd" {
   description = "Enable Argo CD Kubernetes add-on"
   type        = bool
@@ -110,7 +128,7 @@ variable "argocd_manage_add_ons" {
   default     = false
 }
 
-#-----------ArgoCD Apps-----------
+#-----------ARGOCD APPS-----------
 variable "enable_argocd_apps" { 
   description = "Enable ArgoCD Apps."
   type        = bool
@@ -201,7 +219,7 @@ variable "argocd_apps_self_heal" {
   default     = false
 }
 
-#---------Github repo----------
+#-----------GITHUB REPO-------------
 variable "enable_github_repo" {
   description = "Enable Github repo"
   type        = bool
@@ -233,6 +251,127 @@ variable "github_template_owner" {
 
 variable "github_template_repo_name" {
   description = "GitHub template repository name. (Will not use a template, if not set)"
+  type        = string
+  default     = ""
+}
+
+#-----------CERT MANAGER-------------
+variable "enable_cert_manager" {
+  description = "Enable Cert Manager add-on"
+  type        = bool
+  default     = false
+}
+
+variable "cert_manager_helm_config" {
+  description = "Cert Manager Helm Chart config"
+  type        = any
+  default     = {}
+}
+
+variable "cert_manager_irsa_policies" {
+  description = "Additional IAM policies for a IAM role for service accounts"
+  type        = list(string)
+  default     = []
+}
+
+variable "cert_manager_domain_names" {
+  description = "Domain names of the Route53 hosted zone to use with cert-manager"
+  type        = list(string)
+  default     = []
+}
+
+variable "cert_manager_install_acme_issuers" {
+  description = "Install ACME Cluster Issuers"
+  type        = bool
+  default     = true
+}
+
+variable "cert_manager_email" {
+  description = "Email address for expiration emails from ACME"
+  type        = string
+  default     = ""
+}
+
+variable "enable_cert_manager_csi_driver" {
+  description = "Enable Cert Manager CSI Driver add-on"
+  type        = bool
+  default     = false
+}
+
+variable "cert_manager_csi_driver_helm_config" {
+  description = "Cert Manager CSI Driver Helm Chart config"
+  type        = any
+  default     = {}
+}
+
+variable "cert_manager_kubernetes_svc_image_pull_secrets" {
+  description = "list(string) of kubernetes imagePullSecrets"
+  type        = list(string)
+  default     = []
+}
+
+variable "enable_cert_manager_istio_csr" {
+  description = "Enable Cert Manager istio-csr add-on"
+  type        = bool
+  default     = false
+}
+
+variable "cert_manager_istio_csr_helm_config" {
+  description = "Cert Manager Istio CSR Helm Chart config"
+  type        = any
+  default     = {}
+}
+
+variable "cert_manager_cluster_issuer_name" {
+  description = "Prefix of cluster issuer release"
+  type        = string
+  default     = ""
+}
+
+variable "cert_manager_external_account_keyID" {
+  description = "ID of the CA key that the External Account is bound to."
+  type        = string
+  default     = ""
+}
+
+variable "cert_manager_external_account_secret_key" {
+  description = "Secret key of the CA that the External Account is bound to."
+  type        = string
+  default     = ""
+}
+
+variable "cert_manager_preferred_chain" {
+  description = "Chain to use if the ACME server outputs multiple."
+  type        = string
+  default     = ""
+}
+
+variable "cert_manager_acme_server_url" {
+  description = "The URL used to access the ACME server's 'directory' endpoint."
+  type        = string
+  default     = ""
+}
+
+variable "cert_manager_dns_region" {
+  description = "DNS Region"
+  type        = string
+  default     = ""
+}
+
+variable "cert_manager_certificate_common_name" {
+  description = "Common name to be used on the Certificate."
+  type        = string
+  default     = ""
+}
+
+variable "cert_manager_certificate_is_ca" {
+  description = "IsCA will mark this Certificate as valid for certificate signing."
+  type        = bool
+  default     = true
+}
+
+variable "cert_manager_hosted_zone_id" {
+  description = "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call."
   type        = string
   default     = ""
 }
