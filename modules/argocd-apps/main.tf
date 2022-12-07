@@ -1,3 +1,9 @@
+resource "kubernetes_namespace_v1" "this" {
+  count = var.argocd_apps_destination_namespace != "" ? 1 : 0 
+  metadata {
+    name = var.argocd_apps_destination_namespace
+  }
+}
 resource "helm_release" "argocd-apps" {
   count            = var.enable_argocd_apps ? 1 : 0
   name             = var.argocd_apps_chart_name
