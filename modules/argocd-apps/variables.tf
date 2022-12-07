@@ -60,8 +60,8 @@ variable "argocd_apps_source_target_path" {
 
 variable "argocd_apps_source_target_recurse" {
   description = "Source repository's directory recurse in which ArgoCD apps are."
-  type        = string
-  default     = ""
+  type        = bool
+  default     = false
 }
 
 variable "argocd_apps_destination_namespace" {

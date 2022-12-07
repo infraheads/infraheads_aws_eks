@@ -7,7 +7,7 @@ resource "helm_release" "argocd-apps" {
   namespace        = var.argocd_apps_namespace
   create_namespace = true
 
-  values = var.argocd_apps_values != "" ? var.argocd_apps_values : [
+  values = var.argocd_apps_values != "" ? [ var.argocd_apps_values ] : [
     templatefile("${path.module}/values.yaml", {
       name            = var.argocd_apps_name
       app_namespace   = var.argocd_apps_namespace
