@@ -1,18 +1,100 @@
+locals {
+  name                 =  "external-dns"
+  service_account_name = "${local.name}-sa"
+
+  argocd_gitops_config = {
+    enable             = true
+    serviceAccountName = local.service_account_name
+  }
+}
+
+module "helm_addon" {
+  source            = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons/helm-addon"
+
+  # https://github.com/bitnami/charts/blob/main/bitnami/external-dns/Chart.yaml
+  helm_config = merge(
+    {
+      description = "ExternalDNS Helm Chart"
+      name        = local.name
+      chart       = local.name
+      repository  = "https://charts.bitnami.com/bitnami"
+      version     = "6.11.2"
+      namespace   = local.name
+      values = [
+        <<-EOT
+          provider: aws
+          aws:
+            region: ${var.addon_context.aws_region_name}
+        EOT
+      ]
+    },
+    var.helm_config
+  )
+
+  set_values = concat(
+    [
+      {
+        name  = "serviceAccount.name"
+        value = local.service_account_name
+      },
+      {
+        name  = "serviceAccount.create"
+        value = false
+      }
+    ],
+    try(var.helm_config.set_values, [])
+  )
+
+  irsa_config = {
+    create_kubernetes_namespace       = try(var.helm_config.create_namespace, true)
+    kubernetes_namespace              = try(var.helm_config.namespace, local.name)
+    create_kubernetes_service_account = true
+    kubernetes_service_account        = local.service_account_name
+    irsa_iam_policies                 = concat([aws_iam_policy.external_dns.arn], var.irsa_policies)
+  }
+
+  addon_context     = var.addon_context
+  manage_via_gitops = var.manage_via_gitops
+}
+
+#------------------------------------
+# IAM Policy
+#------------------------------------
+
+resource "aws_iam_policy" "external_dns" {
+  description = "External DNS IAM policy."
+  name        = "${var.addon_context.eks_cluster_id}-${local.name}-irsa"
+  path        = var.addon_context.irsa_iam_role_path
+  policy      = data.aws_iam_policy_document.external_dns_iam_policy_document.json
+}
+
 resource "aws_route53_zone" "route53_zone" {
   count     = var.create_route53_zone ? 1 : 0
   name      = "${var.domain_name}"
 }
 
-module "eks_blueprints_kubernetes_addons_external_dns" {
-  source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
+data "aws_route53_zone" "selected" {
+  count     = var.create_route53_zone ? 0 : 1
+  name         = var.domain_name
+  private_zone = var.private_zone
+}
 
-  count                          = var.enable_external_dns ? 1 : 0
-  eks_cluster_id                 = var.eks_cluster_id
-  external_dns_helm_config       = var.external_dns_helm_config
-  # manage_via_gitops              = var.manage_via_gitops
-  external_dns_irsa_policies     = var.external_dns_irsa_policies
+data "aws_iam_policy_document" "external_dns_iam_policy_document" {
+  statement {
+    effect = "Allow"
+    resources = distinct(concat(
+      [var.create_route53_zone ? resource.aws_route53_zone.route53_zone[0].arn : data.aws_route53_zone.selected[0].arn],
+      var.route53_zone_arns
+    ))
+    actions = ["route53:ChangeResourceRecordSets"]
+  }
 
-  eks_cluster_domain             = var.eks_cluster_domain
-  external_dns_private_zone      = var.external_dns_private_zone
-  external_dns_route53_zone_arns = var.external_dns_route53_zone_arns
+  statement {
+    effect    = "Allow"
+    resources = ["*"]
+    actions = [
+      "route53:ListHostedZones",
+      "route53:ListResourceRecordSets",
+    ]
+  }
 }

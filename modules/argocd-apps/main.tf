@@ -5,7 +5,7 @@ resource "kubernetes_namespace_v1" "this" {
   }
 }
 resource "helm_release" "argocd-apps" {
-  count            = var.enable_argocd_apps ? 1 : 0
+  # count            = var.enable_argocd_apps ? 1 : 0
   name             = var.argocd_apps_chart_name
   repository       = var.argocd_apps_chart_repo
   chart            = var.argocd_apps_chart_name

@@ -17,12 +17,12 @@ module "addons" {
 module "argocd_apps" {
   source = "./argocd-apps"
   count  = var.enable_argocd_apps ? 1 : 0
- 
+
   argocd_apps_chart_repo    = var.argocd_apps_chart_repo
   argocd_apps_chart_name    = var.argocd_apps_chart_name
   argocd_apps_chart_version = var.argocd_apps_chart_version
   argocd_apps_namespace     = var.argocd_apps_namespace
- 
+
   argocd_apps_name                   = var.argocd_apps_name
   argocd_apps_project                = var.argocd_apps_project
   argocd_apps_source_repo            = var.argocd_apps_source_repo
@@ -39,14 +39,14 @@ module "external_dns" {
   source = "./external-dns"
   count  = var.enable_external_dns ? 1 : 0
 
-  #   external_dns_helm_config       = var.external_dns_helm_config
-  #   # argocd_manage_add_ons          = var.argocd_manage_add_ons
-  #   external_dns_irsa_policies     = var.external_dns_irsa_policies
-
-  #   eks_cluster_domain             = var.eks_cluster_domain
-  #   external_dns_private_zone      = var.external_dns_private_zone
-  #   external_dns_route53_zone_arns = var.external_dns_route53_zone_arns
-  #   create_route53_zone            = var.create_route53_zone
+  helm_config         = var.external_dns_helm_config
+  manage_via_gitops   = var.argocd_manage_add_ons
+  irsa_policies       = var.external_dns_irsa_policies
+  domain_name         = var.eks_cluster_domain_name
+  private_zone        = var.external_dns_private_zone
+  route53_zone_arns   = var.external_dns_route53_zone_arns
+  create_route53_zone = var.create_route53_zone
+  addon_context       = local.addon_context
 }
 
 module "github_repo" {

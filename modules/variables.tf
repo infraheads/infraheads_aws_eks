@@ -48,17 +48,17 @@ variable "enable_external_dns" {
   type        = bool
   default     = false
 }
+variable "data_plane_wait_arn" {
+  description = "Addon deployment will not proceed until this value is known. Set to node group/Fargate profile ARN to wait for data plane to be ready before provisioning addons"
+  type        = string
+  default     = ""
+}
 
-variable "domain_name" {
+variable "eks_cluster_domain_name" {
   description = "Domain name of the Route53 hosted zone to use with External DNS."
   type        = string
 }
 
-variable "manage_via_gitops" {
-  description = "Enable managing add-on configuration via ArgoCD App of Apps"
-  type        = bool
-  default     = false
-}
 
 variable "external_dns_helm_config" {
   description = "External DNS Helm Chart config"
