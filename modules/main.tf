@@ -12,6 +12,28 @@ module "addons" {
   enable_argo_workflows      = var.enable_argo_workflows
   argo_workflows_helm_config = var.argo_workflows_helm_config
   argocd_manage_add_ons      = var.argocd_manage_add_ons
+
+  # ArgoCD rollouts
+  enable_argo_rollouts       = var.enable_argo_rollouts
+  helm_config                = var.argo_rollouts_helm_config
+  manage_via_gitops          = var.argocd_manage_add_ons
+  addon_context              = local.addon_context
+
+  # Grafana
+  enable_grafana             = var.enable_grafana
+  grafana_helm_config        = var.grafana_helm_config
+  grafana_irsa_policies      = var.grafana_irsa_policies
+
+  #Ingress Nginx
+  enable_ingress_nginx       = var.enable_ingress_nginx
+  ingress_nginx_helm_config  = var.ingress_nginx_helm_config
+
+  #Crossplane
+  enable_crossplane              = var.enable_crossplane
+  crossplane_helm_config         = var.crossplane_helm_config
+  crossplane_aws_provider        = var.crossplane_aws_provider
+  crossplane_jet_aws_provider    = var.crossplane_jet_aws_provider
+  crossplane_kubernetes_provider = var.crossplane_kubernetes_provider
 }
 
 module "argocd_apps" {

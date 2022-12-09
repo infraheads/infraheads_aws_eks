@@ -219,6 +219,19 @@ variable "argocd_apps_self_heal" {
   default     = false
 }
 
+#----------ARGOCD ROLLOUTS------------
+variable "enable_argo_rollouts" {
+  description = "Enable Argo Rollouts add-on"
+  type        = bool
+  default     = false
+}
+
+variable "argo_rollouts_helm_config" {
+  description = "Argo Rollouts Helm Chart config"
+  type        = any
+  default     = null
+}
+
 #-----------GITHUB REPO-------------
 variable "enable_github_repo" {
   description = "Enable Github repo"
@@ -254,7 +267,88 @@ variable "github_template_repo_name" {
   type        = string
   default     = ""
 }
+#-----------GRAFANA----------------
+variable "enable_grafana" {
+  description = "Enable Grafana add-on"
+  type        = bool
+  default     = false
+}
+variable "grafana_helm_config" {
+  description = "Kubernetes Grafana Helm Chart config"
+  type        = any
+  default     = null
+}
+variable "grafana_irsa_policies" {
+  description = "IAM policy ARNs for grafana IRSA"
+  type        = list(string)
+  default     = []
+}
 
+#-----------INGRESS NGINX-------------
+variable "enable_ingress_nginx" {
+  description = "Enable Ingress Nginx add-on"
+  type        = bool
+  default     = false
+}
+
+variable "ingress_nginx_helm_config" {
+  description = "Ingress Nginx Helm Chart config"
+  type        = any
+  default     = {}
+}
+
+#-----------Crossplane ADDON-------------
+variable "enable_crossplane" {
+  description = "Enable Crossplane add-on"
+  type        = bool
+  default     = false
+}
+
+variable "crossplane_helm_config" {
+  description = "Crossplane Helm Chart config"
+  type        = any
+  default     = null
+}
+
+variable "crossplane_aws_provider" {
+  description = "AWS Provider config for Crossplane"
+  type = object({
+    enable                   = bool
+    provider_aws_version     = string
+    additional_irsa_policies = list(string)
+  })
+  default = {
+    enable                   = false
+    provider_aws_version     = "v0.24.1"
+    additional_irsa_policies = []
+  }
+}
+
+variable "crossplane_jet_aws_provider" {
+  description = "AWS Provider Jet AWS config for Crossplane"
+  type = object({
+    enable                   = bool
+    provider_aws_version     = string
+    additional_irsa_policies = list(string)
+  })
+  default = {
+    enable                   = false
+    provider_aws_version     = "v0.24.1"
+    additional_irsa_policies = []
+  }
+}
+
+variable "crossplane_kubernetes_provider" {
+  description = "Kubernetes Provider config for Crossplane"
+  type = object({
+    enable                      = bool
+    provider_kubernetes_version = string
+  })
+  default = {
+    enable                      = false
+    provider_kubernetes_version = "v0.4.1"
+  }
+}
 #-----------CERT MANAGER-------------
 variable "enable_cert_manager" {
   description = "Enable Cert Manager add-on"
