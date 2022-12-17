@@ -15,3 +15,5 @@ applications:
       automated:
         prune: ${prune}
         selfHeal: ${self_heal} 
+      syncOptions:
+        - CreateNamespace=true

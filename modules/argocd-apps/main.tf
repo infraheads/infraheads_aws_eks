@@ -4,6 +4,7 @@ resource "kubernetes_namespace_v1" "this" {
     name = var.argocd_apps_destination_namespace
   }
 }
+
 resource "helm_release" "argocd-apps" {
   # count            = var.enable_argocd_apps ? 1 : 0
   name             = var.argocd_apps_chart_name
@@ -11,7 +12,6 @@ resource "helm_release" "argocd-apps" {
   chart            = var.argocd_apps_chart_name
   version          = var.argocd_apps_chart_version
   namespace        = var.argocd_apps_namespace
-  create_namespace = true
 
   values = var.argocd_apps_values != "" ? [ var.argocd_apps_values ] : [
     templatefile("${path.module}/values.yaml", {
