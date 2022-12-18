@@ -55,6 +55,10 @@ module "argocd_apps" {
   argocd_apps_prune                  = var.argocd_apps_prune
   argocd_apps_self_heal              = var.argocd_apps_self_heal
   argocd_apps_values                 = var.argocd_apps_values
+
+  depends_on = [
+    module.addons
+  ]
 }
 
 module "external_dns" {
