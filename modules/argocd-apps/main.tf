@@ -1,5 +1,5 @@
 resource "kubernetes_namespace_v1" "this" {
-  count = var.argocd_apps_destination_namespace != "" ? 1 : 0 
+  count = var.argocd_apps_destination_namespace != "" ? 1 : 0
   metadata {
     name = var.argocd_apps_destination_namespace
   }
@@ -7,13 +7,13 @@ resource "kubernetes_namespace_v1" "this" {
 
 resource "helm_release" "argocd-apps" {
   # count            = var.enable_argocd_apps ? 1 : 0
-  name             = var.argocd_apps_chart_name
-  repository       = var.argocd_apps_chart_repo
-  chart            = var.argocd_apps_chart_name
-  version          = var.argocd_apps_chart_version
-  namespace        = var.argocd_apps_namespace
+  name       = var.argocd_apps_chart_name
+  repository = var.argocd_apps_chart_repo
+  chart      = var.argocd_apps_chart_name
+  version    = var.argocd_apps_chart_version
+  namespace  = var.argocd_apps_namespace
 
-  values = var.argocd_apps_values != "" ? [ var.argocd_apps_values ] : [
+  values = var.argocd_apps_values != "" ? [var.argocd_apps_values] : [
     templatefile("${path.module}/values.yaml", {
       name            = var.argocd_apps_name
       app_namespace   = var.argocd_apps_namespace

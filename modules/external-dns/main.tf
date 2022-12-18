@@ -1,5 +1,5 @@
 locals {
-  name                 =  "external-dns"
+  name                 = "external-dns"
   service_account_name = "${local.name}-sa"
 
   argocd_gitops_config = {
@@ -9,7 +9,7 @@ locals {
 }
 
 module "helm_addon" {
-  source            = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons/helm-addon"
+  source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons/helm-addon"
 
   # https://github.com/bitnami/charts/blob/main/bitnami/external-dns/Chart.yaml
   helm_config = merge(
@@ -69,12 +69,12 @@ resource "aws_iam_policy" "external_dns" {
 }
 
 resource "aws_route53_zone" "route53_zone" {
-  count     = var.create_route53_zone ? 1 : 0
-  name      = "${var.domain_name}"
+  count = var.create_route53_zone ? 1 : 0
+  name  = var.domain_name
 }
 
 data "aws_route53_zone" "selected" {
-  count     = var.create_route53_zone ? 0 : 1
+  count        = var.create_route53_zone ? 0 : 1
   name         = var.domain_name
   private_zone = var.private_zone
 }

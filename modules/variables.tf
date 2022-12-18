@@ -129,7 +129,7 @@ variable "argocd_manage_add_ons" {
 }
 
 #-----------ARGOCD APPS-----------
-variable "enable_argocd_apps" { 
+variable "enable_argocd_apps" {
   description = "Enable ArgoCD Apps."
   type        = bool
   default     = false
