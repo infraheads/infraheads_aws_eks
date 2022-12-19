@@ -89,7 +89,7 @@ variable "enable_self_managed_aws_ebs_csi_driver" {
   type        = bool
   default     = false
 }
-
+ 
 variable "self_managed_aws_ebs_csi_driver_helm_config" {
   description = "Self-managed aws-ebs-csi-driver Helm chart config"
   type        = any

@@ -752,7 +752,7 @@ module "local_volume_provisioner" {
   enable_local_volume_provisioner      = var.enable_local_volume_provisioner
   local_volume_provisioner_helm_config = var.local_volume_provisioner_helm_config
 }
-
+ 
 module "nvidia_device_plugin" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
