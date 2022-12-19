@@ -786,6 +786,7 @@ module "consul" {
   consul_helm_config    = var.consul_helm_config
   argocd_manage_add_ons = var.argocd_manage_add_ons
 }
+
 module "argocd_apps" {
   source = "./argocd-apps"
   count  = var.enable_argocd_apps ? 1 : 0
