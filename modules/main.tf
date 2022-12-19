@@ -274,11 +274,6 @@ module "external_dns" {
   create_route53_zone = var.create_route53_zone
   route53_zone_arns   = var.external_dns_route53_zone_arns
 }
-
-
-
-
-
 module "fargate_fluentbit" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
@@ -287,7 +282,6 @@ module "fargate_fluentbit" {
   enable_fargate_fluentbit       = var.enable_fargate_fluentbit
   fargate_fluentbit_addon_config = var.fargate_fluentbit_addon_config
 }
-
 module "grafana" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
