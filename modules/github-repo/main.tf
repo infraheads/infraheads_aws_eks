@@ -1,4 +1,3 @@
-
 resource "github_repository" "repository" {
   name        = var.github_repo_name
   description = var.description
