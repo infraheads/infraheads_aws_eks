@@ -3,31 +3,30 @@ module "addons" {
 
   eks_cluster_id = var.eks_cluster_id
 
+  enable_amazon_eks_vpc_cni = var.enable_amazon_eks_vpc_cni
+  
+
   # ArgoCD
   enable_argocd       = var.enable_argocd
   argocd_helm_config  = var.argocd_helm_config
   argocd_applications = var.argocd_applications
 
-  #  # ArgoCD workflow
-  #  enable_argo_workflows      = var.enable_argo_workflows
-  #  argo_workflows_helm_config = var.argo_workflows_helm_config
-  #  argocd_manage_add_ons      = var.argocd_manage_add_ons
-  #
-  #  # ArgoCD rollouts
-  #  enable_argo_rollouts       = var.enable_argo_rollouts
-  #  helm_config                = var.argo_rollouts_helm_config
-  #  manage_via_gitops          = var.argocd_manage_add_ons
-  #  addon_context              = local.addon_context
-  #
-  #  # Grafana
-  #  enable_grafana             = var.enable_grafana
-  #  grafana_helm_config        = var.grafana_helm_config
-  #  grafana_irsa_policies      = var.grafana_irsa_policies
-  #
-  #  #Ingress Nginx
-  #  enable_ingress_nginx       = var.enable_ingress_nginx
-  #  ingress_nginx_helm_config  = var.ingress_nginx_helm_config
-  #
+  # ArgoCD workflow
+  enable_argo_workflows      = var.enable_argo_workflows
+  argo_workflows_helm_config = var.argo_workflows_helm_config
+  argocd_manage_add_ons      = var.argocd_manage_add_ons
+  
+  # ArgoCD rollouts
+  enable_argo_rollouts       = var.enable_argo_rollouts
+  helm_config                = var.argo_rollouts_helm_config
+  manage_via_gitops          = var.argocd_manage_add_ons
+
+  # Grafana
+  enable_grafana             = var.enable_grafana
+  grafana_helm_config        = var.grafana_helm_config
+  grafana_irsa_policies      = var.grafana_irsa_policies
+  argocd_manage_add_ons      = var.argocd_manage_add_ons
+
   #  #Crossplane
   #  enable_crossplane              = var.enable_crossplane
   #  crossplane_helm_config         = var.crossplane_helm_config
