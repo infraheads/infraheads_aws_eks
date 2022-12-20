@@ -2,7 +2,17 @@
 module "aws_vpc_cni" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #eks_cluster_version
+  eks_cluster_version = var.eks_cluster_version
+
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_amazon_eks_vpc_cni = var.enable_amazon_eks_vpc_cni
   enable_ipv6               = var.enable_ipv6
@@ -12,7 +22,20 @@ module "aws_vpc_cni" {
 module "aws_coredns" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
+
+  #eks_cluster_version
+  eks_cluster_version = var.eks_cluster_version
+
+  #amazon_container_image_registry_uris
+  custom_image_registry_uri = var.custom_image_registry_uri
 
   enable_amazon_eks_coredns                           = var.enable_amazon_eks_coredns
   enable_self_managed_coredns                         = var.enable_self_managed_coredns
@@ -26,7 +49,17 @@ module "aws_coredns" {
 module "aws_kube_proxy" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #eks_cluster_version
+  eks_cluster_version = var.eks_cluster_version
+
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_amazon_eks_kube_proxy = var.enable_amazon_eks_kube_proxy
   amazon_eks_kube_proxy_config = var.amazon_eks_kube_proxy_config
@@ -35,7 +68,17 @@ module "aws_kube_proxy" {
 module "aws_ebs_csi_driver" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #eks_cluster_version
+  eks_cluster_version = var.eks_cluster_version
+
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_amazon_eks_aws_ebs_csi_driver        = var.enable_amazon_eks_aws_ebs_csi_driver
   enable_self_managed_aws_ebs_csi_driver      = var.enable_self_managed_aws_ebs_csi_driver
@@ -47,7 +90,14 @@ module "aws_ebs_csi_driver" {
 module "agones" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_agones      = var.enable_agones
   agones_helm_config = var.agones_helm_config
@@ -56,7 +106,14 @@ module "agones" {
 module "airflow" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_airflow      = var.enable_airflow
   airflow_helm_config = var.airflow_helm_config
@@ -65,7 +122,14 @@ module "airflow" {
 module "argocd" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_argocd       = var.enable_argocd
   argocd_helm_config  = var.argocd_helm_config
@@ -75,7 +139,14 @@ module "argocd" {
 module "argocd_rollouts" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_argo_rollouts      = var.enable_argo_rollouts
   argo_rollouts_helm_config = var.argo_rollouts_helm_config
@@ -85,7 +156,14 @@ module "argocd_rollouts" {
 module "argocd_workflows" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_argo_workflows      = var.enable_argo_workflows
   argo_workflows_helm_config = var.argo_workflows_helm_config
@@ -95,7 +173,14 @@ module "argocd_workflows" {
 module "aws_efs_csi_driver" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_aws_efs_csi_driver        = var.enable_aws_efs_csi_driver
   aws_efs_csi_driver_helm_config   = var.aws_efs_csi_driver_helm_config
@@ -106,7 +191,14 @@ module "aws_efs_csi_driver" {
 module "aws_fsx_csi_driver" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_aws_fsx_csi_driver        = var.enable_aws_fsx_csi_driver
   aws_fsx_csi_driver_helm_config   = var.aws_fsx_csi_driver_helm_config
@@ -117,7 +209,14 @@ module "aws_fsx_csi_driver" {
 module "aws_for_fluent_bit" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_aws_fsx_csi_driver        = var.enable_aws_fsx_csi_driver
   aws_fsx_csi_driver_helm_config   = var.aws_fsx_csi_driver_helm_config
@@ -128,7 +227,14 @@ module "aws_for_fluent_bit" {
 module "aws_fsx_csi_driver" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_aws_for_fluentbit                   = var.enable_aws_for_fluentbit
   aws_for_fluentbit_helm_config              = var.aws_for_fluentbit_helm_config
@@ -143,7 +249,14 @@ module "aws_fsx_csi_driver" {
 module "aws_cloudwatch_metrics" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_aws_cloudwatch_metrics        = var.enable_aws_cloudwatch_metrics
   aws_cloudwatch_metrics_helm_config   = var.aws_cloudwatch_metrics_helm_config
@@ -154,7 +267,17 @@ module "aws_cloudwatch_metrics" {
 module "aws_load_balancer_controller" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
+
+  #amazon_container_image_registry_uris
+  custom_image_registry_uri = var.custom_image_registry_uri
 
   enable_aws_load_balancer_controller      = var.enable_aws_load_balancer_controller
   aws_load_balancer_controller_helm_config = var.aws_load_balancer_controller_helm_config
@@ -164,7 +287,14 @@ module "aws_load_balancer_controller" {
 module "aws_node_termination_handler" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_aws_node_termination_handler        = var.enable_aws_node_termination_handler
   auto_scaling_group_names                   = var.auto_scaling_group_names
@@ -177,7 +307,14 @@ module "aws_node_termination_handler" {
 module "appmesh_controller" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_appmesh_controller = var.enable_appmesh_controller
   appmesh_helm_config       = var.appmesh_helm_config
@@ -187,7 +324,14 @@ module "appmesh_controller" {
 module "cert_manager" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_cert_manager                            = var.enable_cert_manager
   cert_manager_helm_config                       = var.cert_manager_helm_config
@@ -202,7 +346,14 @@ module "cert_manager" {
 module "cert_manager_csi_driver" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_cert_manager_csi_driver      = var.enable_cert_manager_csi_driver
   cert_manager_csi_driver_helm_config = var.cert_manager_csi_driver_helm_config
@@ -212,7 +363,14 @@ module "cert_manager_csi_driver" {
 module "cert_manager_istio_csr" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_cert_manager_istio_csr      = var.enable_cert_manager_istio_csr
   cert_manager_istio_csr_helm_config = var.cert_manager_istio_csr_helm_config
@@ -222,7 +380,17 @@ module "cert_manager_istio_csr" {
 module "cluster_autoscaler" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #eks_cluster_version
+  eks_cluster_version = var.eks_cluster_version
+
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_cluster_autoscaler      = var.enable_cluster_autoscaler
   cluster_autoscaler_helm_config = var.cluster_autoscaler_helm_config
@@ -232,7 +400,14 @@ module "cluster_autoscaler" {
 module "coredns_autoscaler" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_amazon_eks_coredns      = var.enable_amazon_eks_coredns
   enable_coredns_autoscaler      = var.enable_coredns_autoscaler
@@ -243,7 +418,14 @@ module "coredns_autoscaler" {
 module "crossplane" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_crossplane              = var.enable_crossplane
   crossplane_helm_config         = var.crossplane_helm_config
@@ -255,7 +437,14 @@ module "crossplane" {
 module "datadog_operator" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_datadog_operator      = var.enable_datadog_operator
   datadog_operator_helm_config = var.datadog_operator_helm_config
@@ -278,7 +467,14 @@ module "external_dns" {
 module "fargate_fluentbit" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_fargate_fluentbit       = var.enable_fargate_fluentbit
   fargate_fluentbit_addon_config = var.fargate_fluentbit_addon_config
@@ -287,7 +483,14 @@ module "fargate_fluentbit" {
 module "grafana" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_grafana        = var.enable_grafana
   grafana_helm_config   = var.grafana_helm_config
@@ -298,7 +501,14 @@ module "grafana" {
 module "ingress_nginx" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_ingress_nginx      = var.enable_ingress_nginx
   ingress_nginx_helm_config = var.ingress_nginx_helm_config
@@ -308,7 +518,14 @@ module "ingress_nginx" {
 module "karpenter" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_karpenter                    = var.enable_karpenter
   karpenter_helm_config               = var.karpenter_helm_config
@@ -321,7 +538,14 @@ module "karpenter" {
 module "keda" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_keda           = var.enable_keda
   keda_helm_config      = var.keda_helm_config
@@ -332,7 +556,14 @@ module "keda" {
 module "kubernetes_dashboard" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_kubernetes_dashboard      = var.enable_kubernetes_dashboard
   kubernetes_dashboard_helm_config = var.kubernetes_dashboard_helm_config
@@ -342,7 +573,14 @@ module "kubernetes_dashboard" {
 module "metrics_server" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_metrics_server      = var.enable_metrics_server
   metrics_server_helm_config = var.metrics_server_helm_config
@@ -352,7 +590,14 @@ module "metrics_server" {
 module "ondat" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_ondat          = var.enable_ondat
   ondat_helm_config     = var.ondat_helm_config
@@ -370,7 +615,14 @@ module "ondat" {
 module "kube_prometheus_stack" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_kube_prometheus_stack      = var.enable_kube_prometheus_stack
   kube_prometheus_stack_helm_config = var.kube_prometheus_stack_helm_config
@@ -379,7 +631,14 @@ module "kube_prometheus_stack" {
 module "portworx" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_portworx      = var.enable_portworx
   portworx_helm_config = var.portworx_helm_config
@@ -388,7 +647,14 @@ module "portworx" {
 module "prometheus" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_prometheus                    = var.enable_prometheus
   prometheus_helm_config               = var.prometheus_helm_config
@@ -400,7 +666,14 @@ module "prometheus" {
 module "reloader" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_reloader       = var.enable_reloader
   reloader_helm_config  = var.reloader_helm_config
@@ -410,7 +683,14 @@ module "reloader" {
 module "spark_history_server" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_spark_history_server        = var.enable_spark_history_server
   spark_history_server_helm_config   = var.spark_history_server_helm_config
@@ -422,7 +702,14 @@ module "spark_history_server" {
 module "spark_k8s_operator" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_spark_k8s_operator      = var.enable_spark_k8s_operator
   spark_k8s_operator_helm_config = var.spark_k8s_operator_helm_config
@@ -432,7 +719,14 @@ module "spark_k8s_operator" {
 module "strimzi_kafka_operator" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_strimzi_kafka_operator      = var.enable_strimzi_kafka_operator
   strimzi_kafka_operator_helm_config = var.strimzi_kafka_operator_helm_config
@@ -442,7 +736,14 @@ module "strimzi_kafka_operator" {
 module "cluster_autoscaler" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_cluster_autoscaler      = var.enable_cluster_autoscaler
   cluster_autoscaler_helm_config = var.cluster_autoscaler_helm_config
@@ -452,7 +753,14 @@ module "cluster_autoscaler" {
 module "sysdig_agent" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_sysdig_agent      = var.enable_sysdig_agent
   sysdig_agent_helm_config = var.sysdig_agent_helm_config
@@ -461,7 +769,14 @@ module "sysdig_agent" {
 module "tetrate_istio" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_tetrate_istio              = var.enable_tetrate_istio
   tetrate_istio_distribution        = var.tetrate_istio_distribution
@@ -480,7 +795,14 @@ module "tetrate_istio" {
 module "thanos" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_thanos         = var.enable_thanos
   thanos_helm_config    = var.thanos_helm_config
@@ -491,7 +813,14 @@ module "thanos" {
 module "traefik" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_traefik        = var.enable_traefik
   traefik_helm_config   = var.traefik_helm_config
@@ -511,7 +840,14 @@ module "vault" {
 module "vpa" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_vpa            = var.enable_vpa
   vpa_helm_config       = var.vpa_helm_config
@@ -521,7 +857,14 @@ module "vpa" {
 module "yunikorn" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_yunikorn       = var.enable_yunikorn
   yunikorn_helm_config  = var.yunikorn_helm_config
@@ -531,7 +874,14 @@ module "yunikorn" {
 module "csi_secrets_store_provider_aws" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_secrets_store_csi_driver_provider_aws = var.enable_secrets_store_csi_driver_provider_aws
   csi_secrets_store_provider_aws_helm_config   = var.csi_secrets_store_provider_aws_helm_config
@@ -541,7 +891,14 @@ module "csi_secrets_store_provider_aws" {
 module "secrets_store_csi_driver" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_secrets_store_csi_driver      = var.enable_secrets_store_csi_driver
   secrets_store_csi_driver_helm_config = var.secrets_store_csi_driver_helm_config
@@ -551,7 +908,14 @@ module "secrets_store_csi_driver" {
 module "aws_privateca_issuer" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_aws_privateca_issuer        = var.enable_aws_privateca_issuer
   aws_privateca_issuer_helm_config   = var.aws_privateca_issuer_helm_config
@@ -563,7 +927,14 @@ module "aws_privateca_issuer" {
 module "velero" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_velero           = var.enable_velero
   velero_helm_config      = var.velero_helm_config
@@ -575,7 +946,14 @@ module "velero" {
 module "opentelemetry_operator" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_amazon_eks_adot             = var.enable_amazon_eks_adot
   enable_opentelemetry_operator      = var.enable_opentelemetry_operator
@@ -588,7 +966,14 @@ module "opentelemetry_operator" {
 module "adot_collector_java" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_adot_collector_java           = var.enable_adot_collector_java
   adot_collector_java_helm_config      = var.adot_collector_java_helm_config
@@ -600,7 +985,14 @@ module "adot_collector_java" {
 module "adot_collector_haproxy" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_adot_collector_haproxy        = var.enable_adot_collector_haproxy
   adot_collector_haproxy_helm_config   = var.adot_collector_haproxy_helm_config
@@ -612,7 +1004,14 @@ module "adot_collector_haproxy" {
 module "adot_collector_memcached" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_adot_collector_memcached      = var.enable_adot_collector_memcached
   adot_collector_memcached_helm_config = var.adot_collector_memcached_helm_config
@@ -624,7 +1023,14 @@ module "adot_collector_memcached" {
 module "adot_collector_nginx" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_adot_collector_nginx          = var.enable_adot_collector_nginx
   adot_collector_nginx_helm_config     = var.adot_collector_nginx_helm_config
@@ -636,7 +1042,14 @@ module "adot_collector_nginx" {
 module "kuberay_operator" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_kuberay_operator      = var.enable_kuberay_operator
   kuberay_operator_helm_config = var.kuberay_operator_helm_config
@@ -645,7 +1058,14 @@ module "kuberay_operator" {
 module "external_secrets" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_external_secrets               = var.enable_external_secrets
   external_secrets_helm_config          = var.external_secrets_helm_config
@@ -658,7 +1078,14 @@ module "external_secrets" {
 module "promtail" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_promtail       = var.enable_promtail
   promtail_helm_config  = var.promtail_helm_config
@@ -668,7 +1095,14 @@ module "promtail" {
 module "calico" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_calico         = var.enable_calico
   promtail_helm_config  = var.promtail_helm_config
@@ -678,7 +1112,14 @@ module "calico" {
 module "kubecost" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_kubecost       = var.enable_kubecost
   kubecost_helm_config  = var.kubecost_helm_config
@@ -688,7 +1129,14 @@ module "kubecost" {
 module "kyverno" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_kyverno                      = var.enable_kyverno
   kyverno_helm_config                 = var.kyverno_helm_config
@@ -702,7 +1150,14 @@ module "kyverno" {
 module "smb_csi_driver" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_smb_csi_driver      = var.enable_smb_csi_driver
   smb_csi_driver_helm_config = var.smb_csi_driver_helm_config
@@ -712,7 +1167,14 @@ module "smb_csi_driver" {
 module "chaos_mesh" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_chaos_mesh      = var.enable_chaos_mesh
   chaos_mesh_helm_config = var.chaos_mesh_helm_config
@@ -722,7 +1184,14 @@ module "chaos_mesh" {
 module "cilium" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_cilium           = var.enable_cilium
   cilium_helm_config      = var.cilium_helm_config
@@ -733,7 +1202,14 @@ module "cilium" {
 module "gatekeeper" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_gatekeeper      = var.enable_gatekeeper
   gatekeeper_helm_config = var.gatekeeper_helm_config
@@ -743,7 +1219,14 @@ module "gatekeeper" {
 module "local_volume_provisioner" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_local_volume_provisioner      = var.enable_local_volume_provisioner
   local_volume_provisioner_helm_config = var.local_volume_provisioner_helm_config
@@ -752,7 +1235,14 @@ module "local_volume_provisioner" {
 module "nvidia_device_plugin" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_nvidia_device_plugin      = var.enable_nvidia_device_plugin
   nvidia_device_plugin_helm_config = var.nvidia_device_plugin_helm_config
@@ -770,7 +1260,9 @@ module "app_2048" {
 module "emr_on_eks" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
 
-  eks_cluster_id = var.eks_cluster_id
+  #aws_eks_cluster
+  data_plane_wait_arn = var.data_plane_wait_arn
+  eks_cluster_id      = var.eks_cluster_id
 
   emr_on_eks_config     = var.emr_on_eks_config
   enable_emr_on_eks     = var.enable_emr_on_eks
@@ -781,6 +1273,15 @@ module "emr_on_eks" {
 
 module "consul" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
+
+  #addon_context
+  eks_cluster_endpoint          = var.eks_cluster_endpoint
+  eks_oidc_provider             = var.eks_oidc_provider
+  data_plane_wait_arn           = var.data_plane_wait_arn
+  eks_cluster_id                = var.eks_cluster_id
+  tags                          = var.tags
+  irsa_iam_role_path            = var.irsa_iam_role_path
+  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
   enable_consul         = var.enable_consul
   consul_helm_config    = var.consul_helm_config
