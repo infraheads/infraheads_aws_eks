@@ -462,6 +462,7 @@ module "external_dns" {
   private_zone        = var.external_dns_private_zone
   create_route53_zone = var.create_route53_zone
   route53_zone_arns   = var.external_dns_route53_zone_arns
+  addon_context       = local.addon_context
 }
 
 module "fargate_fluentbit" {
