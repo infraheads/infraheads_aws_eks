@@ -1526,33 +1526,6 @@ variable "consul_helm_config" {
   default     = {}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #-----------GITHUB REPO-------------
 variable "enable_github_repo" {
   description = "Enable Github repo"

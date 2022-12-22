@@ -218,32 +218,14 @@ module "aws_for_fluent_bit" {
   irsa_iam_role_path            = var.irsa_iam_role_path
   irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
-  enable_aws_fsx_csi_driver        = var.enable_aws_fsx_csi_driver
-  aws_fsx_csi_driver_helm_config   = var.aws_fsx_csi_driver_helm_config
-  aws_fsx_csi_driver_irsa_policies = var.aws_fsx_csi_driver_irsa_policies
-  argocd_manage_add_ons            = var.argocd_manage_add_ons
-}
-
-module "aws_fsx_csi_driver" {
-  source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
-
-  #addon_context
-  eks_cluster_endpoint          = var.eks_cluster_endpoint
-  eks_oidc_provider             = var.eks_oidc_provider
-  data_plane_wait_arn           = var.data_plane_wait_arn
-  eks_cluster_id                = var.eks_cluster_id
-  tags                          = var.tags
-  irsa_iam_role_path            = var.irsa_iam_role_path
-  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
-
-  enable_aws_for_fluentbit                   = var.enable_aws_for_fluentbit
-  aws_for_fluentbit_helm_config              = var.aws_for_fluentbit_helm_config
-  aws_for_fluentbit_irsa_policies            = var.aws_for_fluentbit_irsa_policies
-  aws_for_fluentbit_create_cw_log_group      = var.aws_for_fluentbit_create_cw_log_group
-  aws_for_fluentbit_cw_log_group_name        = var.aws_for_fluentbit_cw_log_group_name
-  aws_for_fluentbit_cw_log_group_retention   = var.aws_for_fluentbit_cw_log_group_retention
-  aws_for_fluentbit_cw_log_group_kms_key_arn = var.aws_for_fluentbit_cw_log_group_kms_key_arn
-  argocd_manage_add_ons                      = var.argocd_manage_add_ons
+  enable_aws_for_fluentbit                    = var.enable_aws_for_fluentbit
+  aws_for_fluentbit_helm_config               = var.aws_for_fluentbit_helm_config
+  aws_for_fluentbit_irsa_policies             = var.aws_for_fluentbit_irsa_policies
+  aws_for_fluentbit_create_cw_log_group       = var.aws_for_fluentbit_create_cw_log_group
+  aws_for_fluentbit_cw_log_group_name         = var.aws_for_fluentbit_cw_log_group_name
+  aws_for_fluentbit_cw_log_group_retention    = var.aws_for_fluentbit_cw_log_group_retention
+  aws_for_fluentbit_cw_log_group_kms_key_arn  = var.aws_for_fluentbit_cw_log_group_kms_key_arn
+  argocd_manage_add_ons                       = var.argocd_manage_add_ons
 }
 
 module "aws_cloudwatch_metrics" {
@@ -732,23 +714,6 @@ module "strimzi_kafka_operator" {
   enable_strimzi_kafka_operator      = var.enable_strimzi_kafka_operator
   strimzi_kafka_operator_helm_config = var.strimzi_kafka_operator_helm_config
   argocd_manage_add_ons              = var.argocd_manage_add_ons
-}
-
-module "cluster_autoscaler" {
-  source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
-
-  #addon_context
-  eks_cluster_endpoint          = var.eks_cluster_endpoint
-  eks_oidc_provider             = var.eks_oidc_provider
-  data_plane_wait_arn           = var.data_plane_wait_arn
-  eks_cluster_id                = var.eks_cluster_id
-  tags                          = var.tags
-  irsa_iam_role_path            = var.irsa_iam_role_path
-  irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
-
-  enable_cluster_autoscaler      = var.enable_cluster_autoscaler
-  cluster_autoscaler_helm_config = var.cluster_autoscaler_helm_config
-  argocd_manage_add_ons          = var.argocd_manage_add_ons
 }
 
 module "sysdig_agent" {
