@@ -299,6 +299,9 @@ module "kubernetes-addons" {
 
 module "argocd_apps" {
   source = "./argocd-apps"
+  depends_on = [
+    module.kubernetes-addons
+  ]
   count  = var.enable_argocd_apps ? 1 : 0
 
   argocd_apps_chart_repo    = var.argocd_apps_chart_repo
