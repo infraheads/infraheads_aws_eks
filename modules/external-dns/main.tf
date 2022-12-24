@@ -10,6 +10,7 @@ locals {
 
 module "helm_addon" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons/helm-addon"
+            
 
   # https://github.com/bitnami/charts/blob/main/bitnami/external-dns/Chart.yaml
   helm_config = merge(

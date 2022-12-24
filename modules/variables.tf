@@ -146,11 +146,6 @@ variable "eks_worker_security_group_id" {
   default     = ""
 }
 
-variable "data_plane_wait_arn" {
-  description = "Addon deployment will not proceed until this value is known. Set to node group/Fargate profile ARN to wait for data plane to be ready before provisioning addons"
-  type        = string
-  default     = ""
-}
 
 variable "auto_scaling_group_names" {
   description = "List of self-managed node groups autoscaling group names"
@@ -255,11 +250,6 @@ variable "enable_argo_workflows" {
   default     = false
 }
 
-variable "argocd_helm_config" {
-  description = "Argo CD Kubernetes add-on config"
-  type        = any
-  default     = {}
-}
 
 variable "argo_workflows_helm_config" {
   description = "Argo workflows Helm Chart config"
@@ -1579,68 +1569,4 @@ variable "grafana_irsa_policies" {
   default     = []
 }
 
-#-----------INGRESS NGINX-------------
-variable "enable_ingress_nginx" {
-  description = "Enable Ingress Nginx add-on"
-  type        = bool
-  default     = false
-}
 
-variable "ingress_nginx_helm_config" {
-  description = "Ingress Nginx Helm Chart config"
-  type        = any
-  default     = {}
-}
-
-#-----------Crossplane ADDON-------------
-variable "enable_crossplane" {
-  description = "Enable Crossplane add-on"
-  type        = bool
-  default     = false
-}
-
-variable "crossplane_helm_config" {
-  description = "Crossplane Helm Chart config"
-  type        = any
-  default     = null
-}
-
-variable "crossplane_aws_provider" {
-  description = "AWS Provider config for Crossplane"
-  type = object({
-    enable                   = bool
-    provider_aws_version     = string
-    additional_irsa_policies = list(string)
-  })
-  default = {
-    enable                   = false
-    provider_aws_version     = "v0.24.1"
-    additional_irsa_policies = []
-  }
-}
-
-variable "crossplane_jet_aws_provider" {
-  description = "AWS Provider Jet AWS config for Crossplane"
-  type = object({
-    enable                   = bool
-    provider_aws_version     = string
-    additional_irsa_policies = list(string)
-  })
-  default = {
-    enable                   = false
-    provider_aws_version     = "v0.24.1"
-    additional_irsa_policies = []
-  }
-}
-
-variable "crossplane_kubernetes_provider" {
-  description = "Kubernetes Provider config for Crossplane"
-  type = object({
-    enable                      = bool
-    provider_kubernetes_version = string
-  })
-  default = {
-    enable                      = false
-    provider_kubernetes_version = "v0.4.1"
-  }
-}
