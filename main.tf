@@ -1,5 +1,5 @@
 module "eks_blueprints" {
-  source = "github.com/aws-ia/terraform-aws-eks-blueprints"
+  source = "github.com/aws-ia/terraform-aws-eks-blueprints?ref=v4.18.0"
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
