@@ -194,9 +194,7 @@ module "kubernetes-addons" {
   tetrate_istio_istiod_helm_config  = var.tetrate_istio_istiod_helm_config
   tetrate_istio_gateway_helm_config = var.tetrate_istio_gateway_helm_config
 
-  enable_thanos         = var.enable_thanos
-  thanos_helm_config    = var.thanos_helm_config
-  thanos_irsa_policies  = var.thanos_irsa_policies
+
 
   enable_traefik        = var.enable_traefik
   traefik_helm_config   = var.traefik_helm_config
