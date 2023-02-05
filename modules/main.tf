@@ -1,6 +1,6 @@
 #-----------------AWS Managed EKS Add-ons----------------------
 module "kubernetes-addons" {
-  source = "github.com/aws-ia/terraform-aws-eks-blueprints.git/modules/kubernetes-addons"
+  source = "github.com/aws-ia/terraform-aws-eks-blueprints.git?ref=v4.18.0/modules/kubernetes-addons"
 
   #eks_cluster_version
   eks_cluster_version = var.eks_cluster_version
