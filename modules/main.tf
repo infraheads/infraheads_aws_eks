@@ -2,7 +2,6 @@
 module "kubernetes-addons" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints.git?ref=v4.18.0/modules/kubernetes-addons"
 
-
   #eks_cluster_version
   eks_cluster_version = var.eks_cluster_version
 
@@ -194,7 +193,6 @@ module "kubernetes-addons" {
   tetrate_istio_cni_helm_config     = var.tetrate_istio_cni_helm_config
   tetrate_istio_istiod_helm_config  = var.tetrate_istio_istiod_helm_config
   tetrate_istio_gateway_helm_config = var.tetrate_istio_gateway_helm_config
-
 
 
   enable_traefik      = var.enable_traefik
