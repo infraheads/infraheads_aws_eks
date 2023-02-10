@@ -49,7 +49,7 @@ module "kubernetes-addons" {
 
   enable_argo_rollouts      = var.enable_argo_rollouts
   argo_rollouts_helm_config = var.argo_rollouts_helm_config
- 
+
   enable_argo_workflows      = var.enable_argo_workflows
   argo_workflows_helm_config = var.argo_workflows_helm_config
 
@@ -61,13 +61,13 @@ module "kubernetes-addons" {
   aws_fsx_csi_driver_helm_config   = var.aws_fsx_csi_driver_helm_config
   aws_fsx_csi_driver_irsa_policies = var.aws_fsx_csi_driver_irsa_policies
 
-  enable_aws_for_fluentbit                    = var.enable_aws_for_fluentbit
-  aws_for_fluentbit_helm_config               = var.aws_for_fluentbit_helm_config
-  aws_for_fluentbit_irsa_policies             = var.aws_for_fluentbit_irsa_policies
-  aws_for_fluentbit_create_cw_log_group       = var.aws_for_fluentbit_create_cw_log_group
-  aws_for_fluentbit_cw_log_group_name         = var.aws_for_fluentbit_cw_log_group_name
-  aws_for_fluentbit_cw_log_group_retention    = var.aws_for_fluentbit_cw_log_group_retention
-  aws_for_fluentbit_cw_log_group_kms_key_arn  = var.aws_for_fluentbit_cw_log_group_kms_key_arn
+  enable_aws_for_fluentbit                   = var.enable_aws_for_fluentbit
+  aws_for_fluentbit_helm_config              = var.aws_for_fluentbit_helm_config
+  aws_for_fluentbit_irsa_policies            = var.aws_for_fluentbit_irsa_policies
+  aws_for_fluentbit_create_cw_log_group      = var.aws_for_fluentbit_create_cw_log_group
+  aws_for_fluentbit_cw_log_group_name        = var.aws_for_fluentbit_cw_log_group_name
+  aws_for_fluentbit_cw_log_group_retention   = var.aws_for_fluentbit_cw_log_group_retention
+  aws_for_fluentbit_cw_log_group_kms_key_arn = var.aws_for_fluentbit_cw_log_group_kms_key_arn
 
   enable_aws_cloudwatch_metrics        = var.enable_aws_cloudwatch_metrics
   aws_cloudwatch_metrics_helm_config   = var.aws_cloudwatch_metrics_helm_config
@@ -133,9 +133,9 @@ module "kubernetes-addons" {
   karpenter_node_iam_instance_profile = var.karpenter_node_iam_instance_profile
   karpenter_sqs_queue_arn             = var.karpenter_sqs_queue_arn
 
-  enable_keda           = var.enable_keda
-  keda_helm_config      = var.keda_helm_config
-  keda_irsa_policies    = var.keda_irsa_policies
+  enable_keda        = var.enable_keda
+  keda_helm_config   = var.keda_helm_config
+  keda_irsa_policies = var.keda_irsa_policies
 
   enable_kubernetes_dashboard      = var.enable_kubernetes_dashboard
   kubernetes_dashboard_helm_config = var.kubernetes_dashboard_helm_config
@@ -143,16 +143,16 @@ module "kubernetes-addons" {
   enable_metrics_server      = var.enable_metrics_server
   metrics_server_helm_config = var.metrics_server_helm_config
 
-  enable_ondat          = var.enable_ondat
-  ondat_helm_config     = var.ondat_helm_config
-  ondat_irsa_policies   = var.ondat_irsa_policies
-  ondat_create_cluster  = var.ondat_create_cluster
-  ondat_etcd_endpoints  = var.ondat_etcd_endpoints
-  ondat_etcd_ca         = var.ondat_etcd_ca
-  ondat_etcd_cert       = var.ondat_etcd_cert
-  ondat_etcd_key        = var.ondat_etcd_key
-  ondat_admin_username  = var.ondat_admin_username
-  ondat_admin_password  = var.ondat_admin_password
+  enable_ondat         = var.enable_ondat
+  ondat_helm_config    = var.ondat_helm_config
+  ondat_irsa_policies  = var.ondat_irsa_policies
+  ondat_create_cluster = var.ondat_create_cluster
+  ondat_etcd_endpoints = var.ondat_etcd_endpoints
+  ondat_etcd_ca        = var.ondat_etcd_ca
+  ondat_etcd_cert      = var.ondat_etcd_cert
+  ondat_etcd_key       = var.ondat_etcd_key
+  ondat_admin_username = var.ondat_admin_username
+  ondat_admin_password = var.ondat_admin_password
 
   enable_kube_prometheus_stack      = var.enable_kube_prometheus_stack
   kube_prometheus_stack_helm_config = var.kube_prometheus_stack_helm_config
@@ -165,8 +165,8 @@ module "kubernetes-addons" {
   enable_amazon_prometheus             = var.enable_amazon_prometheus
   amazon_prometheus_workspace_endpoint = var.amazon_prometheus_workspace_endpoint
 
-  enable_reloader       = var.enable_reloader
-  reloader_helm_config  = var.reloader_helm_config
+  enable_reloader      = var.enable_reloader
+  reloader_helm_config = var.reloader_helm_config
 
   enable_spark_history_server        = var.enable_spark_history_server
   spark_history_server_helm_config   = var.spark_history_server_helm_config
@@ -175,7 +175,7 @@ module "kubernetes-addons" {
 
   enable_spark_k8s_operator      = var.enable_spark_k8s_operator
   spark_k8s_operator_helm_config = var.spark_k8s_operator_helm_config
- 
+
   enable_strimzi_kafka_operator      = var.enable_strimzi_kafka_operator
   strimzi_kafka_operator_helm_config = var.strimzi_kafka_operator_helm_config
 
@@ -195,18 +195,17 @@ module "kubernetes-addons" {
   tetrate_istio_gateway_helm_config = var.tetrate_istio_gateway_helm_config
 
 
+  enable_traefik      = var.enable_traefik
+  traefik_helm_config = var.traefik_helm_config
 
-  enable_traefik        = var.enable_traefik
-  traefik_helm_config   = var.traefik_helm_config
+  enable_vault      = var.enable_vault
+  vault_helm_config = var.vault_helm_config
 
-  enable_vault          = var.enable_vault
-  vault_helm_config     = var.vault_helm_config
+  enable_vpa      = var.enable_vpa
+  vpa_helm_config = var.vpa_helm_config
 
-  enable_vpa            = var.enable_vpa
-  vpa_helm_config       = var.vpa_helm_config
-
-  enable_yunikorn       = var.enable_yunikorn
-  yunikorn_helm_config  = var.yunikorn_helm_config
+  enable_yunikorn      = var.enable_yunikorn
+  yunikorn_helm_config = var.yunikorn_helm_config
 
   enable_secrets_store_csi_driver_provider_aws = var.enable_secrets_store_csi_driver_provider_aws
   csi_secrets_store_provider_aws_helm_config   = var.csi_secrets_store_provider_aws_helm_config
@@ -229,18 +228,18 @@ module "kubernetes-addons" {
   amazon_eks_adot_config             = var.amazon_eks_adot_config
   opentelemetry_operator_helm_config = var.opentelemetry_operator_helm_config
 
-  enable_adot_collector_java           = var.enable_adot_collector_java
-  adot_collector_java_helm_config      = var.adot_collector_java_helm_config
-  amazon_prometheus_workspace_region   = var.amazon_prometheus_workspace_region
+  enable_adot_collector_java         = var.enable_adot_collector_java
+  adot_collector_java_helm_config    = var.adot_collector_java_helm_config
+  amazon_prometheus_workspace_region = var.amazon_prometheus_workspace_region
 
-  enable_adot_collector_haproxy        = var.enable_adot_collector_haproxy
-  adot_collector_haproxy_helm_config   = var.adot_collector_haproxy_helm_config
+  enable_adot_collector_haproxy      = var.enable_adot_collector_haproxy
+  adot_collector_haproxy_helm_config = var.adot_collector_haproxy_helm_config
 
   enable_adot_collector_memcached      = var.enable_adot_collector_memcached
   adot_collector_memcached_helm_config = var.adot_collector_memcached_helm_config
 
-  enable_adot_collector_nginx          = var.enable_adot_collector_nginx
-  adot_collector_nginx_helm_config     = var.adot_collector_nginx_helm_config
+  enable_adot_collector_nginx      = var.enable_adot_collector_nginx
+  adot_collector_nginx_helm_config = var.adot_collector_nginx_helm_config
 
   enable_kuberay_operator      = var.enable_kuberay_operator
   kuberay_operator_helm_config = var.kuberay_operator_helm_config
@@ -251,13 +250,13 @@ module "kubernetes-addons" {
   external_secrets_ssm_parameter_arns   = var.external_secrets_ssm_parameter_arns
   external_secrets_secrets_manager_arns = var.external_secrets_secrets_manager_arns
 
-  enable_promtail       = var.enable_promtail
-  promtail_helm_config  = var.promtail_helm_config
+  enable_promtail      = var.enable_promtail
+  promtail_helm_config = var.promtail_helm_config
 
-  enable_calico         = var.enable_calico
+  enable_calico = var.enable_calico
 
-  enable_kubecost       = var.enable_kubecost
-  kubecost_helm_config  = var.kubecost_helm_config
+  enable_kubecost      = var.enable_kubecost
+  kubecost_helm_config = var.kubecost_helm_config
 
   enable_kyverno                      = var.enable_kyverno
   kyverno_helm_config                 = var.kyverno_helm_config
@@ -290,9 +289,9 @@ module "kubernetes-addons" {
   emr_on_eks_config     = var.emr_on_eks_config
   enable_emr_on_eks     = var.enable_emr_on_eks
   eks_oidc_provider_arn = var.eks_oidc_provider_arn
- 
-  enable_consul         = var.enable_consul
-  consul_helm_config    = var.consul_helm_config
+
+  enable_consul      = var.enable_consul
+  consul_helm_config = var.consul_helm_config
 }
 
 module "argocd_apps" {
@@ -300,7 +299,7 @@ module "argocd_apps" {
   depends_on = [
     module.kubernetes-addons
   ]
-  count  = var.enable_argocd_apps ? 1 : 0
+  count = var.enable_argocd_apps ? 1 : 0
 
   argocd_apps_chart_repo    = var.argocd_apps_chart_repo
   argocd_apps_chart_name    = var.argocd_apps_chart_name

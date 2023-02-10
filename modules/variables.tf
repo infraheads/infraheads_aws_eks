@@ -1569,4 +1569,3 @@ variable "grafana_irsa_policies" {
   default     = []
 }
 
-
