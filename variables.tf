@@ -1,3 +1,21 @@
+variable "create_vpc" {
+	type = bool
+	description = "Create Vpc"
+}
+
+variable "vpc_name" {
+	type = string
+	description = "VPC name"
+	default = "Amigo_vpc"
+  
+}
+
+variable "vpc_cidr" {
+	type = string
+	description = "VPC cidre"
+	default = "10.0.0.0/16"
+}
+
 variable "tags" {
   description = "Additional tags (e.g. `map('BusinessUnit`,`XYZ`)"
   type        = map(string)
