@@ -1,9 +1,9 @@
-module "aws_vpc" {
-  source = "./modules/aws_vpc"
-  count  = var.create_vpc ? 1 : 0
-  vpc_name = var.vpc_name
-  vpc_cidr = var.vpc_cidr
-}
+# module "aws_vpc" {
+#   source = "./modules/aws_vpc"
+#   count  = var.create_vpc ? 1 : 0
+#   vpc_name = var.vpc_name
+#   vpc_cidr = var.vpc_cidr
+# }
 
 module "eks_blueprints" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints?ref=v4.18.0"
@@ -11,10 +11,10 @@ module "eks_blueprints" {
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
 
-  vpc_id                   = local.vpc_id
-  private_subnet_ids       = local.private_subnet_ids
-  public_subnet_ids        = local.public_subnet_ids
-  control_plane_subnet_ids = local.control_plane_subnet_ids
+  vpc_id                   = var.vpc_id
+  private_subnet_ids       = var.private_subnet_ids
+  public_subnet_ids        = var.public_subnet_ids
+  control_plane_subnet_ids = var.control_plane_subnet_ids
 
   cluster_timeouts = var.cluster_timeouts
 
