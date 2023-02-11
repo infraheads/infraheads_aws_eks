@@ -1,9 +1,53 @@
-# module "aws_vpc" {
-#   source = "./modules/aws_vpc"
-#   count  = var.create_vpc ? 1 : 0
-#   vpc_name = var.vpc_name
-#   vpc_cidr = var.vpc_cidr
-# }
+data "aws_availability_zones" "available" {}
+
+locals {
+  name = var.vpc_name
+  azs  = slice(data.aws_availability_zones.available.names, 0, 3)
+
+  tags = {
+    Infraheads = var.vpc_name
+  }
+}
+
+module "vpc" {
+  count = var.create_vpc ? 1 : 0 
+  
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> 3.0"
+
+  name = local.name
+  cidr = var.vpc_cidr
+
+  azs             = local.azs
+  public_subnets  = [for k, v in local.azs : cidrsubnet(var.vpc_cidr, 8, k)]
+  private_subnets = [for k, v in local.azs : cidrsubnet(var.vpc_cidr, 8, k + 10)]
+
+  enable_nat_gateway   = true
+  single_nat_gateway   = true
+  enable_dns_hostnames = true
+
+  # Manage so we can name
+  manage_default_network_acl    = true
+  default_network_acl_tags      = { Name = "${local.name}-default" }
+  manage_default_route_table    = true
+  default_route_table_tags      = { Name = "${local.name}-default" }
+  manage_default_security_group = true
+  default_security_group_tags   = { Name = "${local.name}-default" }
+
+  public_subnet_tags = {
+    "kubernetes.io/cluster/${local.name}" = "shared"
+    "kubernetes.io/role/elb"              = 1
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/cluster/${local.name}" = "shared"
+    "kubernetes.io/role/internal-elb"     = 1
+  }
+
+  tags = local.tags
+}
+
+
 
 module "eks_blueprints" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints?ref=v4.18.0"
@@ -11,10 +55,10 @@ module "eks_blueprints" {
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
 
-  vpc_id                   = var.vpc_id
-  private_subnet_ids       = var.private_subnet_ids
-  public_subnet_ids        = var.public_subnet_ids
-  control_plane_subnet_ids = var.control_plane_subnet_ids
+  vpc_id                   = local.vpc_id
+  private_subnet_ids       = local.private_subnet_ids
+  public_subnet_ids        = local.public_subnet_ids
+  control_plane_subnet_ids = local.control_plane_subnet_ids
 
   cluster_timeouts = var.cluster_timeouts
 
